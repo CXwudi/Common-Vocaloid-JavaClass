@@ -2,21 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>common-vocaloid</artifactId>
+    <groupId>mikufan.cx</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../all/pom.xml</relativePath>
+  </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>mikufan.cx</groupId>
-  <artifactId>common-vocaloid</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0.0-SNAPSHOT</version>
-  <modules>
-    <module>../common-vocaloid-entity</module>
-    <module>../common-vocaloid-util</module>
-    <module>../test-all</module>
-  </modules>
+  <artifactId>common-vocaloid-import-all</artifactId>
 
-  <prerequisites>
-    <maven>3.5.0</maven> <!-- not required but better to add this, good for updating and solving maven problems-->
-  </prerequisites>
+  <dependencies>
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-util</artifactId>
+    </dependency>
+  </dependencies>
 
 
+  <build>
+    <plugins>
+
+    </plugins>
+  </build>
 </project>
