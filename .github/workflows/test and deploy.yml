@@ -38,7 +38,7 @@ jobs:
         cd all
         mvn verify
         
-    - name: Run Maven Deploy
+    - name: Run Maven Deploy Github Package
       run: |
         cd all
-        mvn deploy
+        mvn deploy -s settings.xml -Dskip.unit.tests=true -Dskip.integration.tests=true
