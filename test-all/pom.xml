@@ -5,7 +5,7 @@
   <parent>
     <artifactId>common-vocaloid</artifactId>
     <groupId>mikufan.cx</groupId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <relativePath>../all/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -16,6 +16,10 @@
     meta module containing all test cases. it is designed like this
     to avoid putting test code on release package
   </description>
+
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
 
   <dependencies>
     <dependency>

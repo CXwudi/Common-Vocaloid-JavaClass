@@ -5,7 +5,7 @@
   <parent>
     <artifactId>common-vocaloid</artifactId>
     <groupId>mikufan.cx</groupId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <relativePath>../all/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -24,6 +24,16 @@
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-yaml</artifactId>
+    </dependency>
+
+    <!-- since our jackson-datatype-eclipse-collections excludes their eclipse-collection, we must import ours back -->
+    <dependency>
+      <groupId>org.eclipse.collections</groupId>
+      <artifactId>eclipse-collections-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.collections</groupId>
+      <artifactId>eclipse-collections</artifactId>
     </dependency>
 
     <dependency>

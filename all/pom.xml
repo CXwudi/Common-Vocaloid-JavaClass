@@ -7,11 +7,12 @@
   <groupId>mikufan.cx</groupId>
   <artifactId>common-vocaloid</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.4-SNAPSHOT</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.5-SNAPSHOT</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
     <module>../test-all</module>
+    <module>../import-all</module> <!-- this must needed, parent can't use children in dep tabs directly -->
   </modules>
   <prerequisites>
     <maven>3.5.0</maven> <!-- not required but better to add this, good for updating and solving maven problems-->
@@ -45,13 +46,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.4-SNAPSHOT</module.version>
+    <module.version>1.0.5-SNAPSHOT</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
-
-    <!-- must deploy everyone so that project importing import-all knows the parent -->
-    <!--    <maven.deploy.skip>true</maven.deploy.skip> -->
+    <!-- don't skip deploying parent pom, otherwise import-all can't find parent in customers projects -->
   </properties>
 
   <dependencyManagement>
@@ -71,6 +70,11 @@
       <dependency>
         <groupId>mikufan.cx</groupId>
         <artifactId>common-vocaloid-test-all</artifactId>
+        <version>${module.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>mikufan.cx</groupId>
+        <artifactId>common-vocaloid-import-all</artifactId>
         <version>${module.version}</version>
       </dependency>
 
@@ -159,21 +163,11 @@
   <dependencies>
 
     <dependency>
-      <groupId>mikufan.cx</groupId>
-      <artifactId>common-vocaloid-entity</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>mikufan.cx</groupId>
-      <artifactId>common-vocaloid-util</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.12</version>
       <scope>provided</scope>
     </dependency>
-
 
   </dependencies>
 
