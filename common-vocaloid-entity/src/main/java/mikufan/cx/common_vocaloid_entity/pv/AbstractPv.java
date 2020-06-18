@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * A skeleton class to simply represent the necessary filed that a PV class can have.<br/>
+ * A skeleton class to simply represent the necessary filed that a PV class can have.<p>
  * Note: Only use this class by extending, no declaration on this class
  * @author CX无敌
  */
@@ -44,7 +44,7 @@ public abstract class AbstractPv {
   protected PvService service;
 
   /**
-   * title of the pv, can be null <br/>
+   * title of the pv, can be null <p>
    * noticed that this is not the actual name of the song, but the title that shown on video website
    */
   @JsonProperty

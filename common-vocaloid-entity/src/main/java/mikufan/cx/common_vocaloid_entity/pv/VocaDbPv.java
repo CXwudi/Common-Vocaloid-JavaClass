@@ -6,7 +6,7 @@ import lombok.*;
 
 /**
  * A flatten class for representing a PV with a VocaDB songId to identify itself.
- * <br\>
+ * <p>
  * Learn JAVA: if you are not using abstract declaration for instance storing in java,
  * then in pojo-json, should never use inheritence notation like @JsonTypeInfo and @JsonSubTypes.
  *
@@ -56,7 +56,7 @@ public class VocaDbPv extends AbstractPv implements Comparable<VocaDbPv> {
   }
 
   /**
-   * sorted base on {@link VocaDbPv#songId} <br\>
+   * sorted base on {@link VocaDbPv#songId} <p>
    * Learn Java: base on the expectation of compareTo.
    * it's hard to do a conditional comparing, so just do a simple sort
    */

@@ -11,7 +11,7 @@ import org.eclipse.collections.api.map.ImmutableMap;
 import java.util.Objects;
 
 /**
- * enum of pv service that currently supported. <br/>
+ * enum of pv service that currently supported. <p>
  * the order declared is also the default order of pv service preference
  * note: don't add pv service that our code base is not supported
  * @author CX无敌
@@ -55,7 +55,7 @@ public enum PvService {
   }
 
   /**
-   * get the enum of pv service website base on service name. <br/>
+   * get the enum of pv service website base on service name. <p>
    * note: remember to call {@link PvService#contain(String)} before calling this method
    */
   public static PvService enumOf(String serviceName){
