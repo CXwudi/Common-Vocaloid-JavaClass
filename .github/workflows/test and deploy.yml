@@ -35,10 +35,9 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run Maven Unit Test
       run: |
-        cd test-all
+        cd all
         mvn verify
         
     - name: Run Maven Deploy
       run: |
-        cd ../all
         mvn deploy
