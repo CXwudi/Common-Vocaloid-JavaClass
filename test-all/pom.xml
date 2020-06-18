@@ -12,5 +12,100 @@
 
   <artifactId>common-vocaloid-test-all</artifactId>
 
+  <description>
+    meta module containing all test cases. it is designed like this
+    to avoid putting test code on release package
+  </description>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-entity</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-util</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- logging -->
+    <dependency> <!-- slf4j -->
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency> <!-- log4j2 -->
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <scope>test</scope>
+      <exclusions> <!-- exclude the included slf4j, which uses older version -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency> <!-- async logging support-->
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+      <scope>test</scope>
+      <version>3.4.2</version>
+    </dependency>
+
+    <!-- honor utils -->
+    <dependency>
+      <groupId>org.eclipse.collections</groupId>
+      <artifactId>eclipse-collections-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.collections</groupId>
+      <artifactId>eclipse-collections</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency> <!-- jackson -->
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency> <!-- and its standalone annotation, children import this to avoid jackson-databind -->
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency> <!-- and its standalone object mapper -->
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency> <!-- and supports for eclipse collection -->
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-eclipse-collections</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.collections</groupId>
+          <artifactId>eclipse-collections</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency> <!-- and support for yaml -->
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
 </project>
