@@ -7,7 +7,7 @@
   <groupId>mikufan.cx</groupId>
   <artifactId>common-vocaloid</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.1-SNAPSHOT</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.4-SNAPSHOT</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
@@ -46,12 +46,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.1-SNAPSHOT</module.version>
+    <module.version>1.0.4-SNAPSHOT</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
 
-    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.deploy.skip>true</maven.deploy.skip> <!-- only deploying import-all and real children -->
   </properties>
 
   <dependencyManagement>
@@ -188,41 +188,129 @@
           <version>3.0.0-M3</version>
         </plugin>
 
+        <!-- generate delomboked source codes -->
+        <!-- should only used by children with source codes -->
         <plugin>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-maven-plugin</artifactId>
+          <version>1.18.12.0</version> <!-- better be same with dep version, but can't use property because number is slightly different -->
+          <executions>
+            <execution>
+              <id>delombok-sources</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>delombok</goal>
+              </goals>
+              <configuration>
+                <sourceDirectory>src/main/java</sourceDirectory>
+                <outputDirectory>${project.build.directory}/delombok</outputDirectory>
+                <addOutputDirectory>false</addOutputDirectory>
+                <encoding>UTF-8</encoding>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- copy src/main/resources to delombok sources -->
+        <!-- only used by children with resources -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <id>copy-to-lombok-build</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <resources>
+                  <resource>
+                    <directory>${project.basedir}/src/main/resources</directory>
+                  </resource>
+                </resources>
+                <outputDirectory>${project.build.directory}/delombok</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- use custom delombok sources to create source jar -->
+        <!-- as well should only used by children with source codes -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <id>generate-delomboked-sources-jar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <target>
+                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                       basedir="${project.build.directory}/delombok"/>
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- without this, delombok sources won't get deployed -->
+        <!-- again only children with delombok sources jar need this -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+            <execution>
+              <id>attach-delomboked-sources-jar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>attach-artifact</goal>
+              </goals>
+              <configuration>
+                <artifacts>
+                  <artifact>
+                    <file>${project.build.directory}/${project.build.finalName}-sources.jar</file>
+                    <type>jar</type>
+                    <classifier>sources</classifier>
+                  </artifact>
+                </artifacts>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals><goal>jar</goal></goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin> <!-- deploy to github, better update the version before deploying -->
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.0.0-M1</version>
+          <executions>
+            <execution> <!-- must override the default execution to allow javadoc and sources deployment -->
+              <id>default-deploy</id>
+              <phase>deploy</phase>
+              <goals><goal>deploy</goal></goals>
+            </execution>
+          </executions>
         </plugin>
 
       </plugins>
     </pluginManagement>
-    <plugins>
-
-      <plugin>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>deploy</phase>
-            <goals><goal>jar-no-fork</goal></goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <phase>deploy</phase>
-            <goals><goal>jar</goal></goals>
-          </execution>
-        </executions>
-      </plugin>
-
-    </plugins>
   </build>
 
   <distributionManagement>
