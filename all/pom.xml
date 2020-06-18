@@ -14,7 +14,7 @@
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
     <module>../test-all</module>
-    <module>../import-all</module> <!-- this must needed, parent can't use children in dep tabs directly -->
+    <module>../import-all</module> <!-- this must needed, parent can't use children as dep directly -->
   </modules>
   <prerequisites>
     <maven>3.5.0</maven> <!-- not required but better to add this, good for updating and solving maven problems-->
@@ -58,7 +58,6 @@
   <dependencyManagement>
     <dependencies>
       <!-- all children, which will be used by other projects -->
-      <!-- must declared in dep manager to avoid can't find child from center maven problem-->
       <dependency>
         <groupId>mikufan.cx</groupId>
         <artifactId>common-vocaloid-entity</artifactId>
@@ -190,7 +189,7 @@
           <version>3.0.0-M3</version>
         </plugin>
 
-        <!-- generate delomboked source codes -->
+        <!-- generate delomboked sources codes -->
         <!-- should only used by children with source codes -->
         <plugin>
           <groupId>org.projectlombok</groupId>
@@ -238,7 +237,7 @@
           </executions>
         </plugin>
 
-        <!-- use custom delombok sources to create source jar -->
+        <!-- use custom delombok sources to create sources jar -->
         <!-- as well should only used by children with source codes -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -261,30 +260,18 @@
           </executions>
         </plugin>
 
-        <!-- without this, delombok sources won't get deployed -->
+        <!-- classify this delombok sources jar to get this deployed -->
         <!-- again only children with delombok sources jar need this -->
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-            <execution>
-              <id>attach-delomboked-sources-jar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>attach-artifact</goal>
-              </goals>
-              <configuration>
-                <artifacts>
-                  <artifact>
-                    <file>${project.build.directory}/${project.build.finalName}-sources.jar</file>
-                    <type>jar</type>
-                    <classifier>sources</classifier>
-                  </artifact>
-                </artifacts>
-              </configuration>
-            </execution>
-          </executions>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <classifier>sources</classifier>
+            <includes>
+              <include>${project.build.directory}/${project.build.finalName}-sources.jar</include>
+            </includes>
+          </configuration>
         </plugin>
 
         <plugin>
