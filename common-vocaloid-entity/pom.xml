@@ -12,6 +12,10 @@
 
   <artifactId>common-vocaloid-entity</artifactId>
 
+  <properties>
+    <maven.deploy.skip>false</maven.deploy.skip>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
