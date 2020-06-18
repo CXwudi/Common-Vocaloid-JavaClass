@@ -7,22 +7,46 @@
   <groupId>mikufan.cx</groupId>
   <artifactId>common-vocaloid</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.0-SNAPSHOT</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.1-SNAPSHOT</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
     <module>../test-all</module>
     <module>../import-all</module>
   </modules>
-
   <prerequisites>
     <maven>3.5.0</maven> <!-- not required but better to add this, good for updating and solving maven problems-->
   </prerequisites>
 
+  <name>Common Vocaloid Java Class</name>
+  <description>
+    A shared and public repository for Java program related to Vocaloid and Miku
+  </description>
+  <contributors>
+    <contributor>
+      <name>CXwudi</name>
+      <roles>
+        <role>Project manager</role>
+        <role>Main developer</role>
+        <role>初音ミクのfan</role>
+        <role>ボカロのfan</role>
+      </roles>
+      <email>charleschen0502@gmail.com</email>
+    </contributor>
+    <contributor>
+      <name>初音ミク</name>
+      <roles>
+        <role>Singer</role>
+        <role>Energy provider</role>
+      </roles>
+      <organizationUrl>https://ec.crypton.co.jp/pages/prod/vocaloid/mikuv4x</organizationUrl>
+    </contributor>
+  </contributors>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.0-SNAPSHOT</module.version>
+    <module.version>1.0.1-SNAPSHOT</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
@@ -176,6 +200,7 @@
 
       <plugin>
         <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -187,6 +212,7 @@
 
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>

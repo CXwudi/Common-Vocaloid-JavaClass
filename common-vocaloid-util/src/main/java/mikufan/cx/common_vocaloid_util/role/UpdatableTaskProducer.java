@@ -1,7 +1,7 @@
 package mikufan.cx.common_vocaloid_util.role;
 
 /**
- *
+ * a task producer that can either create new task or update the old one
  * @author CX无敌
  */
 public interface UpdatableTaskProducer<T> extends GeneralTaskProducer {
