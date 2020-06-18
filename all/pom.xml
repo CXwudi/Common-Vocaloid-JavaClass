@@ -12,7 +12,6 @@
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
     <module>../test-all</module>
-    <module>../import-all</module>
   </modules>
   <prerequisites>
     <maven>3.5.0</maven> <!-- not required but better to add this, good for updating and solving maven problems-->
@@ -51,12 +50,14 @@
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
 
-    <maven.deploy.skip>true</maven.deploy.skip> <!-- only deploying import-all and real children -->
+    <!-- must deploy everyone so that project importing import-all knows the parent -->
+    <!--    <maven.deploy.skip>true</maven.deploy.skip> -->
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- all children-->
+      <!-- all children, which will be used by other projects -->
+      <!-- must declared in dep manager to avoid can't find child from center maven problem-->
       <dependency>
         <groupId>mikufan.cx</groupId>
         <artifactId>common-vocaloid-entity</artifactId>
@@ -70,11 +71,6 @@
       <dependency>
         <groupId>mikufan.cx</groupId>
         <artifactId>common-vocaloid-test-all</artifactId>
-        <version>${module.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>mikufan.cx</groupId>
-        <artifactId>common-vocaloid-import-all</artifactId>
         <version>${module.version}</version>
       </dependency>
 
@@ -161,6 +157,16 @@
   </dependencyManagement>
 
   <dependencies>
+
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-entity</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-util</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -296,7 +302,9 @@
           </executions>
         </plugin>
 
-        <plugin> <!-- deploy to github, better update the version before deploying -->
+        <!-- deploy to github, better update the version before deploying -->
+        <!-- this plugin is the default included plugin, so everyone will run this -->
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.0.0-M1</version>
