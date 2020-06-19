@@ -11,7 +11,7 @@ import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 import java.util.Comparator;
 
 /**
- * a task for manipulating around Pvs
+ * a task for manipulating around PVs with VocaDB IDs.
  * @author CX无敌
  */
 @ToString

@@ -12,10 +12,10 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Pv extends AbstractPv{
 
-  public Pv(@NonNull String pvId, @NonNull PvService service, String name) {
+  public Pv(@NonNull String pvId, @NonNull PvService service, String title) {
     this.pvId = pvId;
     this.service = service;
-    this.title = name;
+    this.title = title;
   }
 
 

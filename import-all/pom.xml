@@ -16,10 +16,6 @@
     the package that released on github, to use common-vocaloid, import this one
   </description>
 
-  <properties>
-    <maven.deploy.skip>false</maven.deploy.skip>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>mikufan.cx</groupId>

@@ -14,7 +14,7 @@ import lombok.ToString;
  */
 @Getter @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@JsonPropertyOrder({"name", "pvId", "service"})
+@JsonPropertyOrder({"title", "pvId", "service"})
 public abstract class AbstractPv {
   // is better to have a protected default constructor for jackson for this class and subclasses
   // the equals() is designed to make sure every single PV is a different instance

@@ -28,6 +28,12 @@
       <artifactId>eclipse-collections</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>mikufan.cx</groupId>
+      <artifactId>common-vocaloid-util</artifactId>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>

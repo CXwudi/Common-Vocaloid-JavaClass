@@ -1,4 +1,4 @@
-package mikufan.cx.common_vocaloid_util.io;
+package common_vocaloid_util.io;
 
 import lombok.Value;
 

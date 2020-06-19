@@ -15,7 +15,7 @@ import lombok.*;
  */
 @Getter @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@JsonPropertyOrder({"name", "pvId", "service", "songId"})
+@JsonPropertyOrder({"title", "pvId", "service", "songId"})
 public class VocaDbPv extends AbstractPv implements Comparable<VocaDbPv> {
   //a protected default constructor used by jackson only
 
@@ -25,10 +25,10 @@ public class VocaDbPv extends AbstractPv implements Comparable<VocaDbPv> {
   @JsonProperty
   protected int songId;
 
-  public VocaDbPv(@NonNull String pvId, @NonNull PvService service, String name, int songId) {
+  public VocaDbPv(@NonNull String pvId, @NonNull PvService service, String title, int songId) {
     this.pvId = pvId;
     this.service = service;
-    this.title = name;
+    this.title = title;
     this.songId = songId;
   }
 
