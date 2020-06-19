@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <!-- a bug exists in github action about using classifiers with SNAPSHOT versions -->
   <!-- https://github.community/t/github-package-registry-as-maven-repo-trouble-uploading-artifact/14226/38 -->
-  <version>1.0.6.1</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.7.2</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
@@ -47,7 +47,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.6.1</module.version>
+    <module.version>1.0.7.2</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
@@ -259,28 +259,31 @@
           </executions>
         </plugin>
 
-        <!-- classify this delombok sources jar to get this deployed -->
-        <!-- again only children with delombok sources jar need this -->
+        <!-- classify the delomboked sources jar to get deployed -->
+        <!-- again only children with delomboked sources jar need this -->
+        <!-- can't use maven-jar-plugin as it create wrong structure sources jar -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.2.0</version>
-          <executions> <!-- in executions, an hidden default goal will produce the lib jar-->
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
             <execution>
-              <id>classify-delomboked-sources-jar</id>
+              <id>attach-delomboked-sources-jar</id>
               <phase>package</phase>
               <goals>
-                <goal>jar</goal>
+                <goal>attach-artifact</goal>
               </goals>
               <configuration>
-                <classifier>sources</classifier>
-                <includes>
-                  <include>${project.build.directory}/${project.build.finalName}-sources.jar</include>
-                </includes>
+                <artifacts>
+                  <artifact>
+                    <file>${project.build.directory}/${project.build.finalName}-sources.jar</file>
+                    <type>jar</type>
+                    <classifier>sources</classifier>
+                  </artifact>
+                </artifacts>
               </configuration>
             </execution>
           </executions>
-
         </plugin>
 
         <plugin>
