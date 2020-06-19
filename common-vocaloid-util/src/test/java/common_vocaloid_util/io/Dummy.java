@@ -1,11 +1,19 @@
 package common_vocaloid_util.io;
 
-import lombok.Value;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@Value
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Dummy {
-  String name;
-  int id;
+
+  @JsonProperty
+  private String name;
+
+  @JsonProperty
+  private int id;
 
   @Override
   public String toString() {

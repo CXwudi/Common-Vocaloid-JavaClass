@@ -1,5 +1,6 @@
 package mikufan.cx.common_vocaloid_util.io;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -13,9 +14,9 @@ public interface PojoFileTranslator<P> {
   /**
    * read a file and return the content in pojo
    * @param file the file to read
-   * @return the pojo wrapped in Option if read success, else {@link Optional#empty()}
+   * @return the pojo, can be null
    */
-  Optional<P> read(Path file);
+  P read(Path file) throws IOException;
 
   /**
    * write a pojo back to a file
@@ -23,6 +24,6 @@ public interface PojoFileTranslator<P> {
    * @param dest the file where to write the pojo
    * @return {@code true} if success
    */
-  boolean write(P pojo, Path dest);
+  boolean write(P pojo, Path dest) throws IOException;
 
 }

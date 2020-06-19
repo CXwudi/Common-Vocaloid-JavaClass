@@ -8,16 +8,15 @@ import mikufan.cx.common_vocaloid_util.jackson.YamlMapperUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 class JacksonPojoTranslatorTest {
-  private final JacksonPojoTranslator<Dummy> dummyTranslator = new JacksonPojoTranslator<>(JsonMapper.builder().build());
+  private final JacksonPojoTranslator<Dummy> dummyTranslator = new JacksonPojoTranslator<>(JsonMapper.builder().build(), Dummy.class);
   private final Path dir = Path.of("src/test/resources/io_test");
   private final Path dummyJson = dir.resolve("dummy.json");
   private final Path missingFile = dir.resolve("missing.json");
@@ -27,11 +26,11 @@ class JacksonPojoTranslatorTest {
   /**
    * should be able to read from json
    */
-  @Test
+  @Test @SneakyThrows
   void testRead() {
-    Optional<Dummy> dummy = dummyTranslator.read(dummyJson);
-    assertTrue(dummy.isPresent());
-    log.info("dummy = {}", dummy.get());
+    var dummy = dummyTranslator.read(dummyJson);
+    assertNotNull(dummy);
+    log.info("dummy = {}", dummy);
   }
 
   /**
@@ -39,8 +38,7 @@ class JacksonPojoTranslatorTest {
    */
   @Test
   void testReadMissingFile() {
-    Optional<Dummy> dummy = dummyTranslator.read(missingFile);
-    assertTrue(dummy.isEmpty());
+    assertThrows(IOException.class, () -> dummyTranslator.read(missingFile));
   }
 
   /**
@@ -66,12 +64,12 @@ class JacksonPojoTranslatorTest {
     Assertions.assertTrue(dummyTranslator.write(dummyObj, tempFile));
   }
 
-  @Test
+  @Test @SneakyThrows
   void testReadYaml(){
     var dummyYaml = dir.resolve("dummyYaml.yaml");
-    var reader = new JacksonPojoTranslator<Dummy>(YamlMapperUtil.createDefaultForReadOnly());
+    var reader = new JacksonPojoTranslator(YamlMapperUtil.createDefaultForReadOnly(), Dummy.class);
     var yamlOpt = reader.read(dummyYaml);
-    log.info("yamlOpt = {}", yamlOpt.get());
+    log.info("yamlOpt = {}", yamlOpt);
     assertTrue(true);
   }
 }
