@@ -3,7 +3,7 @@ package common_vocaloid_util.io;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import mikufan.cx.common_vocaloid_util.io.JacksonPojoTranslator;
+import mikufan.cx.common_vocaloid_util.io.JacksonPojoTransformer;
 import mikufan.cx.common_vocaloid_util.jackson.YamlMapperUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 class JacksonPojoTranslatorTest {
-  private final JacksonPojoTranslator<Dummy> dummyTranslator = new JacksonPojoTranslator<>(JsonMapper.builder().build(), Dummy.class);
+  private final JacksonPojoTransformer<Dummy> dummyTranslator = new JacksonPojoTransformer<>(JsonMapper.builder().build(), Dummy.class);
   private final Path dir = Path.of("src/test/resources/io_test");
   private final Path dummyJson = dir.resolve("dummy.json");
   private final Path missingFile = dir.resolve("missing.json");
@@ -67,7 +67,7 @@ class JacksonPojoTranslatorTest {
   @Test @SneakyThrows
   void testReadYaml(){
     var dummyYaml = dir.resolve("dummyYaml.yaml");
-    var reader = new JacksonPojoTranslator(YamlMapperUtil.createDefaultForReadOnly(), Dummy.class);
+    var reader = new JacksonPojoTransformer(YamlMapperUtil.createDefaultForReadOnly(), Dummy.class);
     var yamlOpt = reader.read(dummyYaml);
     log.info("yamlOpt = {}", yamlOpt);
     assertTrue(true);
