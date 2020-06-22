@@ -12,3 +12,5 @@ jobs:
         uses: navikt/remove-package-versions@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:  
+          keep-versions: 1
