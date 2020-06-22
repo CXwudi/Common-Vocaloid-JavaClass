@@ -27,5 +27,5 @@ jobs:
         repositories: '[{"id": "github", "url": "https://maven.pkg.github.com/CXwudi/Common-Vocaloid-JavaClass"}]'
 
     - name: Deploy to Github without Testing
-      working-directory: all/
+      working-directory: all-in-one/
       run: mvn clean deploy -Dmaven.test.skip=true
