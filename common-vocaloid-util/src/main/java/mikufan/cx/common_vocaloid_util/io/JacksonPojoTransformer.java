@@ -17,20 +17,24 @@ import java.nio.file.Path;
  */
 @Getter @Slf4j
 @AllArgsConstructor
-public class JacksonPojoTranslator<P> implements PojoFileTranslator<P> {
+public class JacksonPojoTransformer<P> implements PojoFileTransformer<P> {
 
   @NonNull
   private final ObjectMapper mapper;
 
   /**
-   * finally we decide to store the class info <p>
-   * TypeReference<P> is very fra
+   * finally we decide to store the class<p>
+   * TypeReference is very fragile. thanks for the stupid Java type erasing.
    */
   @NonNull
   private final Class<P> tClass;
 
-  public static <T> JacksonPojoTranslator<T> createWithDefaultMapper(Class<T> tClass){
-    return new JacksonPojoTranslator<>(JsonMapperUtil.createDefault(), tClass);
+  /**
+   * create it using the {@link JsonMapperUtil#createDefault()}
+   * @param tClass class obj of the POJO
+   */
+  public static <T> JacksonPojoTransformer<T> createWithDefaultMapper(Class<T> tClass){
+    return new JacksonPojoTransformer<>(JsonMapperUtil.createDefault(), tClass);
   }
 
   /**

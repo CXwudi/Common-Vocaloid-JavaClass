@@ -2,14 +2,13 @@ package mikufan.cx.common_vocaloid_util.io;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 
 /**
  *
  * @param <P>
  * @author CX无敌
  */
-public interface PojoFileTranslator<P> {
+public interface PojoFileTransformer<P> {
 
   /**
    * read a file and return the content in pojo
