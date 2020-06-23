@@ -39,6 +39,6 @@ public class ReleaseEventSeriesContract {
   private int version;
 
   @JsonProperty
-  private WebLinkContract webLinks;
+  private MutableList<WebLinkContract> webLinks;
 
 }

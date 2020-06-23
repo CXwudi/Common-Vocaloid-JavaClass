@@ -12,10 +12,10 @@ public class SongForApiContract {
   private String additionalNames;
 
   @JsonProperty
-  private AlbumContract albums;
+  private MutableList<AlbumContract> albums;
 
   @JsonProperty
-  private ArtistForSongContract artists;
+  private MutableList<ArtistForSongContract> artists;
 
   @JsonProperty
   private String artistString;
@@ -42,7 +42,7 @@ public class SongForApiContract {
   private int lengthSeconds;
 
   @JsonProperty
-  private LyricsForSongContract lyrics;
+  private MutableList<LyricsForSongContract> lyrics;
 
   @JsonProperty
   private EntryThumbForApiContract mainPicture;
@@ -54,7 +54,7 @@ public class SongForApiContract {
   private String name;
 
   @JsonProperty
-  private LocalizedStringContract names;
+  private MutableList<LocalizedStringContract> names;
 
   @JsonProperty
   private int originalVersionId;
@@ -63,7 +63,7 @@ public class SongForApiContract {
   private String publishDate;
 
   @JsonProperty
-  private PVContract pvs;
+  private MutableList<PVContract> pvs;
 
   @JsonProperty
   private String pvServices;
@@ -81,7 +81,7 @@ public class SongForApiContract {
   private String status;
 
   @JsonProperty
-  private TagUsageForApiContract tags;
+  private MutableList<TagUsageForApiContract> tags;
 
   @JsonProperty
   private String thumbUrl;
@@ -90,6 +90,6 @@ public class SongForApiContract {
   private int version;
 
   @JsonProperty
-  private WebLinkForApiContract webLinks;
+  private MutableList<WebLinkForApiContract> webLinks;
 
 }

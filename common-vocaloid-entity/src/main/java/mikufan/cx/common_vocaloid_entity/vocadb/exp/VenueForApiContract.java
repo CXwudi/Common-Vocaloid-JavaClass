@@ -24,7 +24,7 @@ public class VenueForApiContract {
   private String description;
 
   @JsonProperty
-  private ReleaseEventContract events;
+  private MutableList<ReleaseEventContract> events;
 
   @JsonProperty
   private int id;
@@ -33,7 +33,7 @@ public class VenueForApiContract {
   private String name;
 
   @JsonProperty
-  private LocalizedStringContract names;
+  private MutableList<LocalizedStringContract> names;
 
   @JsonProperty
   private String status;
@@ -42,6 +42,6 @@ public class VenueForApiContract {
   private int version;
 
   @JsonProperty
-  private WebLinkForApiContract webLinks;
+  private MutableList<WebLinkForApiContract> webLinks;
 
 }

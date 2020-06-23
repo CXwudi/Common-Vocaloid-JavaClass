@@ -12,7 +12,7 @@ public class ReleaseEventForApiContract {
   private String additionalNames;
 
   @JsonProperty
-  private ArtistForEventContract artists;
+  private MutableList<ArtistForEventContract> artists;
 
   @JsonProperty
   private String category;
@@ -36,7 +36,7 @@ public class ReleaseEventForApiContract {
   private String name;
 
   @JsonProperty
-  private LocalizedStringContract names;
+  private MutableList<LocalizedStringContract> names;
 
   @JsonProperty
   private ReleaseEventSeriesContract series;
@@ -57,7 +57,7 @@ public class ReleaseEventForApiContract {
   private String status;
 
   @JsonProperty
-  private TagUsageForApiContract tags;
+  private MutableList<TagUsageForApiContract> tags;
 
   @JsonProperty
   private String urlSlug;
@@ -72,6 +72,6 @@ public class ReleaseEventForApiContract {
   private int version;
 
   @JsonProperty
-  private WebLinkForApiContract webLinks;
+  private MutableList<WebLinkForApiContract> webLinks;
 
 }
