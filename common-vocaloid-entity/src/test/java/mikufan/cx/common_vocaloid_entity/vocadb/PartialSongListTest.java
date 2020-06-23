@@ -3,10 +3,11 @@ package mikufan.cx.common_vocaloid_entity.vocadb;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.eclipsecollections.EclipseCollectionsModule;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.get_listid_songs.PartialSongList;
+import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.get_listid_songs.SongInListForApiContract;
+import mikufan.cx.common_vocaloid_util.jackson.JsonMapperUtil;
 import org.eclipse.collections.api.factory.Lists;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +17,8 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-class ResponseSongListTest {
-  private final ObjectMapper objectMapper = JsonMapper.builder()
-      .addModule(new EclipseCollectionsModule())
-      .build();
+class PartialSongListTest {
+  private final ObjectMapper objectMapper = JsonMapperUtil.createDefault();
   private final String parent = "src/test/resources/vocadb";
 
 
@@ -29,7 +28,7 @@ class ResponseSongListTest {
   @Test @SneakyThrows
   void testParseModel() {
     var jsonFile = new File(parent, "songListModelSchema.json");
-    var response = objectMapper.readValue(jsonFile, ResponseSongList.class);
+    var response = objectMapper.readValue(jsonFile, PartialSongList.class);
     log.info("{}", response);
     assertTrue(true);
   }
@@ -45,9 +44,9 @@ class ResponseSongListTest {
     );
     samples.forEach(json -> {
       var jsonFile = new File(parent, json);
-      ResponseSongList response = null;
+      PartialSongList response = null;
       try {
-        response = objectMapper.readValue(jsonFile, ResponseSongList.class);
+        response = objectMapper.readValue(jsonFile, PartialSongList.class);
       } catch (IOException e) {
         fail(e);
       }
@@ -59,16 +58,16 @@ class ResponseSongListTest {
   /**
    * should be able to merge two responses into one without duplicating songs
    */
-  @Test
+  @Test @SneakyThrows
   void testEqualsAndHashCode(){
     var responses = Lists.immutable.of(
         "songListFullResponseSample1.json",
         "songListFullResponseSample2.json"
     ).collect(str -> {
       var file = new File(parent, str);
-      ResponseSongList response = null;
+      PartialSongList response = null;
       try {
-        response = objectMapper.readValue(file, ResponseSongList.class);
+        response = objectMapper.readValue(file, PartialSongList.class);
       } catch (IOException e) {
         fail(e);
       }
@@ -79,14 +78,27 @@ class ResponseSongListTest {
     var mergedResponse = responses.drop(1).injectInto(
         responses.get(0),
         (res1, res2) ->{
-          var set = res1.getItems().toSortedSet();
-          set.addAll(res2.getItems());
+          var set1 = res1.getItems().distinctBy(item -> item.getSong().getId());
+          var set2 = res2.getItems().distinctBy(item -> item.getSong().getId());
+          set1.addAll(set2);
+          var finalSet = set1.distinctBy(item -> item.getSong().getId())
+              .sortThisByInt(item -> item.getOrder())//sorted by order
+              .zipWithIndex().collect(itemWithIndex -> {
+                var oriItem = itemWithIndex.getOne();
+                var newIndex = itemWithIndex.getTwo() + 1;//remember vocadb list order start from 1
+                return SongInListForApiContract.builder()
+                    .notes(oriItem.getNotes())
+                    .song(oriItem.getSong())
+                    .order(newIndex)
+                    .build();
+              });
+
           res1.getItems().clear();
-          res1.getItems().addAll(set);
+          res1.getItems().addAll(finalSet);
           return res1;
         });
 
-    log.info("{}", mergedResponse);
+    log.info("{}", objectMapper.writeValueAsString(mergedResponse));
     assertEquals(8, mergedResponse.getItems().size());
 
   }
@@ -94,7 +106,7 @@ class ResponseSongListTest {
   @Test @SneakyThrows
   void testWriteBackToFile(){
     var jsonFile = new File(parent, "songListModelSchema.json");
-    var response = objectMapper.readValue(jsonFile,ResponseSongList.class);
+    var response = objectMapper.readValue(jsonFile, PartialSongList.class);
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT).enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
     var resultFile = new File(parent, "songListModelSchemaRewritten.json");
     resultFile.deleteOnExit();

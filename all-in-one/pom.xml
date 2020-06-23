@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <!-- a bug exists in github action about using classifiers with SNAPSHOT versions -->
   <!-- https://github.community/t/github-package-registry-as-maven-repo-trouble-uploading-artifact/14226/38 -->
-  <version>1.0.0</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.1</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
@@ -47,7 +47,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.0</module.version>
+    <module.version>1.0.1</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
