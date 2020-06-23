@@ -1,4 +1,4 @@
-package mikufan.cx.common_vocaloid_entity.vocadb.api.songList.getListIdSongs;
+package mikufan.cx.common_vocaloid_entity.vocadb.api.songList.get_listid_songs;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
