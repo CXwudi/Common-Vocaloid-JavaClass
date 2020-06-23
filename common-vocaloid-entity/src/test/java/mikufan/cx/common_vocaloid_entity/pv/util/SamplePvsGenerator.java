@@ -2,7 +2,7 @@ package mikufan.cx.common_vocaloid_entity.pv.util;
 
 import mikufan.cx.common_vocaloid_entity.pv.PvService;
 import mikufan.cx.common_vocaloid_entity.pv.VocaDbPv;
-import mikufan.cx.common_vocaloid_entity.vocadb.ResponseSongList;
+import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.getListIdSongs.ResponseSongList;
 import mikufan.cx.common_vocaloid_util.jackson.JsonMapperUtil;
 import org.eclipse.collections.api.list.MutableList;
 

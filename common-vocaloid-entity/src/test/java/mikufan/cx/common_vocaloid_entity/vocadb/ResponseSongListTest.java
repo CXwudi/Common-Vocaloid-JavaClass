@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.eclipsecollections.EclipseCollectionsModule;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.getListIdSongs.ResponseSongList;
 import org.eclipse.collections.api.factory.Lists;
 import org.junit.jupiter.api.Test;
 
