@@ -2,7 +2,7 @@ package mikufan.cx.common_vocaloid_entity.pv.util;
 
 import mikufan.cx.common_vocaloid_entity.pv.PvService;
 import mikufan.cx.common_vocaloid_entity.pv.VocaDbPv;
-import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.getListIdSongs.ResponseSongList;
+import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.getListIdSongs.PartialSongList;
 import mikufan.cx.common_vocaloid_util.jackson.JsonMapperUtil;
 import org.eclipse.collections.api.list.MutableList;
 
@@ -17,9 +17,9 @@ public class SamplePvsGenerator {
   /** this generate multiple IdentifiedPv with repeated songIds */
   public static MutableList<VocaDbPv> generateVocadbPvs() {
     var file = new File("src/test/resources/vocadb/songListNeededResponse.json");
-    ResponseSongList response = null;
+    PartialSongList response = null;
     try {
-      response = JsonMapperUtil.createDefaultForReadOnly().readValue(file, ResponseSongList.class);
+      response = JsonMapperUtil.createDefaultForReadOnly().readValue(file, PartialSongList.class);
     } catch (IOException e) {
       fail(e);
     }
