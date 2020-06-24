@@ -10,18 +10,7 @@ jobs:
   remove-old-packages:
     runs-on: ubuntu-latest
     steps:
-    - name: GitHub Package Repository Janitor
-      uses: stripethree/gpr-janitor@v2.0.0
+    - name: Delete Package Versions
+      uses: actions/delete-package-versions@v1.0.2
       with:
-        # When 'true', will not delete package versions, only log information
-        dry-run: false # default is true
-        # Minimum number of recent versions to keep, per package
-        keep-versions: 1 # default is 5
-        # Minimum age, in days, for a release to be deleted
-        min-age-days: 0 # default is 30
-        # Maximum number of packages to fetch
-        packages-to-fetch: 5 # default is 1
-        # Maximum number of versions to fetch, per package
-        # versions-to-fetch: # default is 25
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        num-old-versions-to-delete: 999
