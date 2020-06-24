@@ -10,7 +10,36 @@ jobs:
   remove-old-packages:
     runs-on: ubuntu-latest
     steps:
-    - name: Delete Package Versions
+    - name: Delete old common-vocaloid
       uses: actions/delete-package-versions@v1.0.2
       with:
-        package-version-ids: 1.0.0,1.0.7.4,1.0.7.3,1.0.7.2,1.0.7,1.0.6.1,1.0.6-SNAPSHOT,1.0.5-SNAPSHOT,1.0.4-SNAPSHOT,1.0.3-SNAPSHOT,1.0.2-SNAPSHOT,1.0.1-SNAPSHOT,1.0.0-SNAPSHOT
+        # Name of the package containing the version to delete. Required if dynamically deleting oldest versions.
+        package-name: 'common-vocaloid' # optional
+        # Number of versions to delete starting with the oldest version. Defaults to 1.
+        num-old-versions-to-delete: 1 # optional, default is 1
+     
+     
+    - name: Delete old common-vocaloid-import-all
+      uses: actions/delete-package-versions@v1.0.2
+      with:
+        # Name of the package containing the version to delete. Required if dynamically deleting oldest versions.
+        package-name: 'common-vocaloid-import-all' # optional
+        # Number of versions to delete starting with the oldest version. Defaults to 1.
+        num-old-versions-to-delete: 1 # optional, default is 1
+
+    - name: Delete old common-vocaloid-entity
+      uses: actions/delete-package-versions@v1.0.2
+      with:
+        # Name of the package containing the version to delete. Required if dynamically deleting oldest versions.
+        package-name: 'common-vocaloid-entity' # optional
+        # Number of versions to delete starting with the oldest version. Defaults to 1.
+        num-old-versions-to-delete: 1 # optional, default is 1
+
+    - name: Delete old common-vocaloid-util
+      uses: actions/delete-package-versions@v1.0.2
+      with:
+        # Name of the package containing the version to delete. Required if dynamically deleting oldest versions.
+        package-name: 'common-vocaloid-util' # optional
+        # Number of versions to delete starting with the oldest version. Defaults to 1.
+        num-old-versions-to-delete: 1 # optional, default is 1
+ 
