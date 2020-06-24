@@ -13,4 +13,4 @@ jobs:
     - name: Delete Package Versions
       uses: actions/delete-package-versions@v1.0.2
       with:
-        package-version-ids: 1.0.0, 1.0.7.4, 1.0.7.3, 1.0.7.2, 1.0.7, 1.0.6.1, 1.0.6-SNAPSHOT, 1.0.5-SNAPSHOT, 1.0.4-SNAPSHOT, 1.0.3-SNAPSHOT, 1.0.2-SNAPSHOT, 1.0.1-SNAPSHOT, 1.0.0-SNAPSHOT
+        package-version-ids:1.0.0,1.0.7.4,1.0.7.3,1.0.7.2,1.0.7,1.0.6.1,1.0.6-SNAPSHOT,1.0.5-SNAPSHOT,1.0.4-SNAPSHOT,1.0.3-SNAPSHOT,1.0.2-SNAPSHOT,1.0.1-SNAPSHOT,1.0.0-SNAPSHOT
