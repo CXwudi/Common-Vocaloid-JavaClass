@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <!-- a bug exists in github action about using classifiers with SNAPSHOT versions -->
   <!-- https://github.community/t/github-package-registry-as-maven-repo-trouble-uploading-artifact/14226/38 -->
-  <version>1.0.2</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.2.1</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
@@ -47,11 +47,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.2</module.version>
+    <module.version>1.0.2.1</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
     <!-- don't skip deploying parent pom, otherwise import-all can't find parent in customers projects -->
+    <delombok.output>delombok</delombok.output>
   </properties>
 
   <dependencyManagement>
@@ -203,7 +204,7 @@
               </goals>
               <configuration>
                 <sourceDirectory>src/main/java</sourceDirectory>
-                <outputDirectory>${project.build.directory}/delombok</outputDirectory>
+                <outputDirectory>${project.build.directory}/${delombok.output}</outputDirectory>
                 <addOutputDirectory>false</addOutputDirectory>
                 <encoding>UTF-8</encoding>
               </configuration>
@@ -230,7 +231,7 @@
                     <directory>${project.basedir}/src/main/resources</directory>
                   </resource>
                 </resources>
-                <outputDirectory>${project.build.directory}/delombok</outputDirectory>
+                <outputDirectory>${project.build.directory}/${delombok.output}</outputDirectory>
               </configuration>
             </execution>
           </executions>
@@ -252,7 +253,7 @@
               <configuration>
                 <target>
                   <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
-                       basedir="${project.build.directory}/delombok"/>
+                       basedir="${project.build.directory}/${delombok.output}"/>
                 </target>
               </configuration>
             </execution>
@@ -293,6 +294,9 @@
             <execution>
               <id>attach-javadocs</id>
               <goals><goal>jar</goal></goals>
+              <configuration>
+                <sourcepath>${project.build.directory}/${delombok.output}</sourcepath>
+              </configuration>
             </execution>
           </executions>
         </plugin>
