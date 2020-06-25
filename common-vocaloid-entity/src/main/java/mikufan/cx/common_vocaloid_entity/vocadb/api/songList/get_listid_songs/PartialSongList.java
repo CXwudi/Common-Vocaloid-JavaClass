@@ -2,7 +2,6 @@ package mikufan.cx.common_vocaloid_entity.vocadb.api.songList.get_listid_songs;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 import lombok.ToString;
 import mikufan.cx.common_vocaloid_entity.vocadb.api.common.PartialFindResult;
 import org.eclipse.collections.api.list.MutableList;
@@ -12,7 +11,7 @@ import org.eclipse.collections.api.list.MutableList;
  *
  * @author CX无敌
  */
-@Getter @ToString
+@ToString(callSuper = true)
 public class PartialSongList extends PartialFindResult<SongInListForApiContract> {
 
   @JsonCreator

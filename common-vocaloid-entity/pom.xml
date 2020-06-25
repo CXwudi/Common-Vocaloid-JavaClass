@@ -5,7 +5,7 @@
   <parent>
     <artifactId>common-vocaloid</artifactId>
     <groupId>mikufan.cx</groupId>
-    <version>1.0.2.1</version>
+    <version>1.0.2.2</version>
     <relativePath>../all-in-one/pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
