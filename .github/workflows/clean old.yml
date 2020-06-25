@@ -1,10 +1,11 @@
 name: Remove old Package Versions
 # from https://github.com/navikt/remove-package-versions
 on:
-  push:
-    branches: master
-#   schedule:
-#     - cron:  '0 8 * * *'
+  repository_dispatch: # just want to disable this actiono
+#   push:
+#     branches: master
+# #   schedule:
+# #     - cron:  '0 8 * * *'
 
 jobs:
   remove-old-packages:
