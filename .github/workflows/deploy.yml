@@ -24,7 +24,7 @@ jobs:
         # json array of servers to add to settings.xml
         servers: '[{"id": "github", "username": "${{ github.actor }}", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
         # json array of repositories to add to settings.xml
-        repositories: '[{"id": "github", "url": "https://maven.pkg.github.com/CXwudi/Common-Vocaloid-JavaClass"}]'
+        repositories: '[{"id": "github", "url": "https://maven.pkg.github.com/CXwudi/common-vocaloid-java"}]'
 
     - name: Deploy to Github without Testing
       working-directory: all-in-one/
