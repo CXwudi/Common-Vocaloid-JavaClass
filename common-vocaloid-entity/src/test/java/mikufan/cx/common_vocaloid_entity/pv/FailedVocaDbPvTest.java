@@ -9,8 +9,8 @@ class FailedVocaDbPvTest {
   @Test
   void testEquals() {
     VocaDbPv vocaDbPv = new VocaDbPv("sm123456", PvService.NICONICO, "A random しゃべる帽子 PV", 123456);
-    FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv,"deleted vocaDbPv");
-    FailedVocaDbPv pv2 = new FailedVocaDbPv(vocaDbPv,"hided vocaDbPv");
+    FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), "deleted vocaDbPv");
+    FailedVocaDbPv pv2 = new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), "hided vocaDbPv");
     assertEquals(pv1,pv2);
   }
 
@@ -20,16 +20,9 @@ class FailedVocaDbPvTest {
   @Test
   void testCompareNotThrow(){
     VocaDbPv vocaDbPv = new VocaDbPv("sm123456", PvService.NICONICO, "A random しゃべる帽子 PV", 123456);
-    FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv,"deleted vocaDbPv");
+    FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), "deleted vocaDbPv");
     FailedVocaDbPv pv2 = null;
     assertDoesNotThrow(() -> pv1.compareTo(pv2));
   }
 
-  /**
-   * should not create without a vocadb pv
-   */
-  @Test
-  void testNonNull(){
-    assertThrows(NullPointerException.class, () -> new FailedVocaDbPv(null,"deleted vocaDbPv"));
-  }
 }

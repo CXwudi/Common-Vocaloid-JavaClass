@@ -12,8 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 public class FailedVocaDbPv implements Comparable<FailedVocaDbPv> {
 
-  @JsonProperty @NonNull
+  @JsonProperty
   private VocaDbPv pv;
+
+  @JsonProperty
+  private String songName;
 
   @JsonProperty
   @EqualsAndHashCode.Exclude

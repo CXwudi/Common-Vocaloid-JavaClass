@@ -78,6 +78,6 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
   public boolean markError(VocaDbPv vocaDbPv, String reason){
     done.remove(vocaDbPv);
     todo.remove(vocaDbPv);
-    return fails.add(new FailedVocaDbPv(vocaDbPv, reason));
+    return fails.add(new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), reason));
   }
 }

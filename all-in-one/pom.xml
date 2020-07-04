@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <!-- a bug exists in github action about using classifiers with SNAPSHOT versions -->
   <!-- https://github.community/t/github-package-registry-as-maven-repo-trouble-uploading-artifact/14226/38 -->
-  <version>1.0.2.2</version>  <!-- remember update module.version and version tag in children as well -->
+  <version>1.0.3</version>  <!-- remember update module.version and version tag in children as well -->
   <modules>
     <module>../common-vocaloid-entity</module>
     <module>../common-vocaloid-util</module>
@@ -19,7 +19,7 @@
     <maven>3.5.0</maven> <!-- not required but better to add this, good for updating and solving maven problems-->
   </prerequisites>
 
-  <name>Common Vocaloid Java Class</name>
+  <name>Common Vocaloid Java</name>
   <description>
     A shared and public repository for Java program related to Vocaloid and Miku
   </description>
@@ -47,7 +47,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>11</java.version>
-    <module.version>1.0.2.2</module.version>
+    <module.version>1.0.3</module.version>
     <log4j.version>2.13.3</log4j.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
     <jackson.version>2.11.0</jackson.version>
@@ -66,16 +66,6 @@
       <dependency>
         <groupId>mikufan.cx</groupId>
         <artifactId>common-vocaloid-util</artifactId>
-        <version>${module.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>mikufan.cx</groupId>
-        <artifactId>common-vocaloid-test-all</artifactId>
-        <version>${module.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>mikufan.cx</groupId>
-        <artifactId>common-vocaloid-import-all</artifactId>
         <version>${module.version}</version>
       </dependency>
 
