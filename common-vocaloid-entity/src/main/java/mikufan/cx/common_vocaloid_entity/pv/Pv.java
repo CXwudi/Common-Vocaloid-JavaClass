@@ -1,6 +1,7 @@
 package mikufan.cx.common_vocaloid_entity.pv;
 
 import lombok.*;
+import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 
 import java.util.Objects;
 

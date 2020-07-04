@@ -2,6 +2,7 @@ package mikufan.cx.common_vocaloid_entity.pv;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 import mikufan.cx.common_vocaloid_entity.pv.util.SamplePvsGenerator;
 import org.eclipse.collections.api.list.MutableList;
 import org.junit.jupiter.api.Test;

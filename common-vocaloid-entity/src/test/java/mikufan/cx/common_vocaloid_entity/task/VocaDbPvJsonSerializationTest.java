@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import mikufan.cx.common_vocaloid_entity.pv.PvService;
+import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 import mikufan.cx.common_vocaloid_entity.pv.VocaDbPv;
 import mikufan.cx.common_vocaloid_util.jackson.JsonMapperUtil;
 import org.junit.jupiter.api.Test;

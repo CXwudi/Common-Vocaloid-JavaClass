@@ -1,5 +1,6 @@
 package mikufan.cx.common_vocaloid_entity.pv;
 
+import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

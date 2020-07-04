@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 
 /**
  * A skeleton class to simply represent the necessary filed that a PV class can have.<p>

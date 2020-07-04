@@ -1,4 +1,4 @@
-package mikufan.cx.common_vocaloid_entity.pv;
+package mikufan.cx.common_vocaloid_entity.pv.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -11,23 +11,43 @@ import org.eclipse.collections.api.map.ImmutableMap;
 import java.util.Objects;
 
 /**
- * enum of pv service that currently supported. <p>
+ * enum of pv service that vocaloid producer would usually used to submit their songs. <p>
  * the order declared is also the default order of pv service preference
- * note: don't add pv service that our code base is not supported
  * @author CX无敌
  */
 @AllArgsConstructor
 @Getter
 public enum PvService {
 
+  /**
+   * represents NicoNico Douga
+   */
   @JsonProperty(PvServiceString.NICONICO_STR)
   NICONICO(PvServiceString.NICONICO_STR),
 
+  /**
+   * represents Youtube
+   */
   @JsonProperty(PvServiceString.YOUTUBE_STR)
   YOUTUBE(PvServiceString.YOUTUBE_STR),
 
+  /**
+   * represents Bilibili
+   */
   @JsonProperty(PvServiceString.BILIBILI_STR)
-  BILIBILI(PvServiceString.BILIBILI_STR);
+  BILIBILI(PvServiceString.BILIBILI_STR),
+
+  /**
+   * represents SoundCloud
+   */
+  @JsonProperty(PvServiceString.SOUNDCLOUD_STR)
+  SOUNDCLOUD(PvServiceString.SOUNDCLOUD_STR),
+
+  /**
+   * represents Piapro
+   */
+  @JsonProperty(PvServiceString.PIAPRO_STR)
+  PIAPRO(PvServiceString.PIAPRO_STR);
 
   private final String serviceName;
 
@@ -40,17 +60,24 @@ public enum PvService {
    */
   private static final ImmutableList<PvService> DEFAULT_ORDER;
 
+  /**
+   * we decide to use explicit implementation for default order and str->enum map
+   */
   static {
-    NAME_TO_ENUM_MAP = Maps.immutable.of(
-        PvServiceString.NICONICO_STR, NICONICO,
-        PvServiceString.YOUTUBE_STR, YOUTUBE,
-        PvServiceString.BILIBILI_STR, BILIBILI
-    );
+    var map = Maps.mutable.<String, PvService>empty();
+    map.put(PvServiceString.NICONICO_STR, NICONICO);
+    map.put(PvServiceString.YOUTUBE_STR, YOUTUBE);
+    map.put(PvServiceString.BILIBILI_STR, BILIBILI);
+    map.put(PvServiceString.SOUNDCLOUD_STR, SOUNDCLOUD);
+    map.put(PvServiceString.PIAPRO_STR, PIAPRO);
+    NAME_TO_ENUM_MAP = map.toImmutable();
 
     DEFAULT_ORDER = Lists.immutable.of(
         NICONICO,
         YOUTUBE,
-        BILIBILI
+        BILIBILI,
+        SOUNDCLOUD,
+        PIAPRO
     );
   }
 
@@ -70,12 +97,4 @@ public enum PvService {
     return DEFAULT_ORDER;
   }
 
-  /**
-   * holding the name of pv website, used by this enum only
-   */
-  private interface PvServiceString {
-    String NICONICO_STR = "NicoNicoDouga";
-    String YOUTUBE_STR = "Youtube";
-    String BILIBILI_STR = "Bilibili";
-  }
 }
