@@ -1,6 +1,5 @@
 package mikufan.cx.common_vocaloid_entity.pv.util;
 
-import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 import mikufan.cx.common_vocaloid_entity.pv.VocaDbPv;
 import mikufan.cx.common_vocaloid_entity.vocadb.api.songList.get_listid_songs.PartialSongList;
 import mikufan.cx.common_vocaloid_util.jackson.JsonMapperUtil;
@@ -24,18 +23,17 @@ public class SamplePvsGenerator {
       fail(e);
     }
     assertNotNull(response);
-    var pvs = response.getItems().toList().flatCollect(
+    return response.getItems().toList().flatCollect(
         item ->
-            item.getSong().getPvs().select(pvItem -> PvService.contain(pvItem.getService()))
+            item.getSong().getPvs()
                 .collect(pvItem -> new VocaDbPv(
                         pvItem.getPvId(),
-                        PvService.enumOf(pvItem.getService()),
+                        pvItem.getService(),
                         pvItem.getName(),
                         item.getSong().getId()
                     )
                 )
 
     );
-    return pvs;
   }
 }

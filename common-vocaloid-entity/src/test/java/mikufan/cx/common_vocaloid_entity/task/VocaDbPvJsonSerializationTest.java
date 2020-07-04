@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
+import mikufan.cx.common_vocaloid_entity.pv.service.PvServiceStr;
 import mikufan.cx.common_vocaloid_entity.pv.VocaDbPv;
 import mikufan.cx.common_vocaloid_util.jackson.JsonMapperUtil;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ class VocaDbPvJsonSerializationTest {
     val pv = mapper.readValue(new File(parent, "pvJsonModel.json"), VocaDbPv.class);
     assertEquals("", pv.getTitle());
     assertEquals("", pv.getPvId());
-    assertEquals(PvService.NICONICO, pv.getService());
+    assertEquals(PvServiceStr.NICONICO, pv.getService());
     assertEquals(0, pv.getSongId());
   }
 
@@ -36,7 +36,7 @@ class VocaDbPvJsonSerializationTest {
    */
   @Test @SneakyThrows
   void writeJson(){
-    val pv = new VocaDbPv("ERo-sPa1a5g", PvService.YOUTUBE,
+    val pv = new VocaDbPv("ERo-sPa1a5g", PvServiceStr.YOUTUBE,
         "八王子P × Giga「Gimme×Gimme feat. 初音ミク・鏡音リン」", 246033);
     val str = mapper.writeValueAsString(pv);
     log.info("str = {}", str);

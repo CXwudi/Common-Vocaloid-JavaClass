@@ -3,7 +3,6 @@ package mikufan.cx.common_vocaloid_entity.pv;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
-import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 
 /**
  * A flatten class for representing a PV with a VocaDB songId to identify itself.
@@ -26,7 +25,7 @@ public class VocaDbPv extends AbstractPv implements Comparable<VocaDbPv> {
   @JsonProperty
   protected int songId;
 
-  public VocaDbPv(@NonNull String pvId, @NonNull PvService service, String title, int songId) {
+  public VocaDbPv(@NonNull String pvId, @NonNull String service, String title, int songId) {
     this.pvId = pvId;
     this.service = service;
     this.title = title;

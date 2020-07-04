@@ -1,7 +1,6 @@
 package mikufan.cx.common_vocaloid_entity.pv;
 
 import lombok.*;
-import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Pv extends AbstractPv{
 
-  public Pv(@NonNull String pvId, @NonNull PvService service, String title) {
+  public Pv(@NonNull String pvId, @NonNull String service, String title) {
     this.pvId = pvId;
     this.service = service;
     this.title = title;
@@ -29,7 +28,7 @@ public class Pv extends AbstractPv{
       return false;
     }
     AbstractPv that = (AbstractPv) o;
-    return service == that.service && Objects.equals(pvId, that.pvId);
+    return Objects.equals(service, that.service) && Objects.equals(pvId, that.pvId);
   }
 
   @Override

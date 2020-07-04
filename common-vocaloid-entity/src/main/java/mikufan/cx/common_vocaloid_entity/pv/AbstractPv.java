@@ -6,7 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
 
 /**
  * A skeleton class to simply represent the necessary filed that a PV class can have.<p>
@@ -42,7 +41,7 @@ public abstract class AbstractPv {
    * which website does it belongs to
    */
   @JsonProperty
-  protected PvService service;
+  protected String service;
 
   /**
    * title of the pv, can be null <p>

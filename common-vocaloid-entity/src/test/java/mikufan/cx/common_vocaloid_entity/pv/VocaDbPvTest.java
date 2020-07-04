@@ -2,7 +2,7 @@ package mikufan.cx.common_vocaloid_entity.pv;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import mikufan.cx.common_vocaloid_entity.pv.service.PvService;
+import mikufan.cx.common_vocaloid_entity.pv.service.PvServiceStr;
 import mikufan.cx.common_vocaloid_entity.pv.util.SamplePvsGenerator;
 import org.eclipse.collections.api.list.MutableList;
 import org.junit.jupiter.api.Test;
@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class VocaDbPvTest {
-  private final VocaDbPv vocaDbPv1 = new VocaDbPv("sm35767788", PvService.NICONICO,
+  private final VocaDbPv vocaDbPv1 = new VocaDbPv("sm35767788", PvServiceStr.NICONICO,
       "シン・ノンフィクションガール - れるりりfeat.初音ミク＆GUMI", 255950);
-  private final VocaDbPv vocaDbPv2 = new VocaDbPv("sm35666758", PvService.NICONICO,
+  private final VocaDbPv vocaDbPv2 = new VocaDbPv("sm35666758", PvServiceStr.NICONICO,
       "初音ミク - アカボシ", 253000);
-  private final VocaDbPv vocaDbPv3 = new VocaDbPv("ERo-sPa1a5g", PvService.YOUTUBE,
+  private final VocaDbPv vocaDbPv3 = new VocaDbPv("ERo-sPa1a5g", PvServiceStr.YOUTUBE,
       "八王子P × Giga「Gimme×Gimme feat. 初音ミク・鏡音リン」", 246033);
-  private final VocaDbPv vocaDbPv3Alt = new VocaDbPv("sm35866152", PvService.NICONICO,
+  private final VocaDbPv vocaDbPv3Alt = new VocaDbPv("sm35866152", PvServiceStr.NICONICO,
       "【初音ミク×鏡音リン】Gimme×Gimme【八王子P×Giga】", 246033);
 
   /**
@@ -64,7 +64,7 @@ public class VocaDbPvTest {
    */
   @Test
   void notNull(){
-    assertThrows(NullPointerException.class, () -> new VocaDbPv(null, PvService.BILIBILI, "", -1));
+    assertThrows(NullPointerException.class, () -> new VocaDbPv(null, PvServiceStr.BILIBILI, "", -1));
     assertThrows(NullPointerException.class, () -> new VocaDbPv("title", null, "", -1));
   }
 
