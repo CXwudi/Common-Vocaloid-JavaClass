@@ -9,6 +9,7 @@ import org.eclipse.collections.api.factory.SortedSets;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * a task for manipulating around PVs with VocaDB IDs.
@@ -55,7 +56,7 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
    * add the vocaDbPv to done list, remove it from other lists if presents
    * @return {@code true} if vocaDbPv added
    */
-  public boolean markDone(VocaDbPv vocaDbPv){
+  public boolean markDone(@NonNull VocaDbPv vocaDbPv){
     todo.remove(vocaDbPv);
     fails.removeIf(failedVocaDbPv -> failedVocaDbPv.getPv().equals(vocaDbPv));
     return done.add(vocaDbPv);
@@ -65,7 +66,7 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
    * add the vocaDbPv to tudo list, remove it from other lists if presents
    * @return {@code true} if vocaDbPv added
    */
-  public boolean markTodo(VocaDbPv vocaDbPv){
+  public boolean markTodo(@NonNull VocaDbPv vocaDbPv){
     done.remove(vocaDbPv);
     fails.removeIf(failedVocaDbPv -> failedVocaDbPv.getPv().equals(vocaDbPv));
     return todo.add(vocaDbPv);
@@ -75,9 +76,17 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
    * add the vocaDbPv to error list, remove it from other lists if presents
    * @return {@code true} if vocaDbPv added
    */
-  public boolean markError(VocaDbPv vocaDbPv, String reason){
+  public boolean markError(@NonNull VocaDbPv vocaDbPv, String reason){
     done.remove(vocaDbPv);
     todo.remove(vocaDbPv);
     return fails.add(new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), reason));
+  }
+
+  /**
+   * add the song to error list, without the pv info
+   * @return {@code true} if song is added to the error list
+   */
+  public boolean markError(@NonNull String songName, String reason){
+    return fails.add(new FailedVocaDbPv(null, songName, reason));
   }
 }
