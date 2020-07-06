@@ -9,6 +9,7 @@ import org.eclipse.collections.api.factory.SortedSets;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * a task for manipulating around PVs with VocaDB IDs.
@@ -57,7 +58,10 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
    */
   public boolean markDone(@NonNull VocaDbPv vocaDbPv){
     todo.remove(vocaDbPv);
-    fails.removeIf(failedVocaDbPv -> failedVocaDbPv.getPv().equals(vocaDbPv));
+    fails.removeIf(failedVocaDbPv -> {
+      var pv = failedVocaDbPv.getPv();
+      return pv != null && pv.equals(vocaDbPv);
+    });
     return done.add(vocaDbPv);
   }
 
@@ -67,7 +71,10 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
    */
   public boolean markTodo(@NonNull VocaDbPv vocaDbPv){
     done.remove(vocaDbPv);
-    fails.removeIf(failedVocaDbPv -> failedVocaDbPv.getPv().equals(vocaDbPv));
+    fails.removeIf(failedVocaDbPv -> {
+      var pv = failedVocaDbPv.getPv();
+      return pv != null && pv.equals(vocaDbPv);
+    });
     return todo.add(vocaDbPv);
   }
 
