@@ -8,7 +8,7 @@ import java.util.Objects;
  * A simple representation of a pv
  * @author CX无敌
  */
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Pv extends AbstractPv{
 

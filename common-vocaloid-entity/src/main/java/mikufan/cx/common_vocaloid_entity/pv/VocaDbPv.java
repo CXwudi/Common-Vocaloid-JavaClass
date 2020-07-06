@@ -13,7 +13,7 @@ import lombok.*;
  * without abstract declaration, we can let json don't contain classes info
  * @author CX无敌
  */
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @JsonPropertyOrder({"title", "pvId", "service", "songId"})
 public class VocaDbPv extends AbstractPv implements Comparable<VocaDbPv> {
