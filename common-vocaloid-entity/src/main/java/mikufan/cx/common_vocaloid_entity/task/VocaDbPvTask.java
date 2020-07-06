@@ -9,7 +9,6 @@ import org.eclipse.collections.api.factory.SortedSets;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 
 import java.util.Comparator;
-import java.util.Objects;
 
 /**
  * a task for manipulating around PVs with VocaDB IDs.
@@ -32,7 +31,7 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
   protected MutableSortedSet<VocaDbPv> done = SortedSets.mutable.empty();
 
   @JsonProperty("fail")
-  protected MutableSortedSet<FailedVocaDbPv> fails = SortedSets.mutable.with(Comparator.comparing(FailedVocaDbPv::getPv));
+  protected MutableSortedSet<FailedVocaDbPv> fails = SortedSets.mutable.empty();
 
 
   @Override

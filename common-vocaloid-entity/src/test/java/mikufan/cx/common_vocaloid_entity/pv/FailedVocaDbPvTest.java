@@ -24,6 +24,7 @@ class FailedVocaDbPvTest {
     FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), "deleted vocaDbPv");
     FailedVocaDbPv pv2 = null;
     assertDoesNotThrow(() -> pv1.compareTo(pv2));
+    assertTrue(pv1.compareTo(pv2) > 0);
   }
 
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.*;
 
+import java.util.Comparator;
+
 /**
  * A flatten class for representing a PV with a VocaDB songId to identify itself.
  * <p>
@@ -62,9 +64,6 @@ public class VocaDbPv extends AbstractPv implements Comparable<VocaDbPv> {
    */
   @Override
   public int compareTo(VocaDbPv o) {
-    if (o == null){
-      return 1;
-    }
-    return Integer.compare(this.songId, o.songId);
+    return Comparator.nullsFirst(Comparator.comparingInt(VocaDbPv::getSongId)).compare(this, o);
   }
 }

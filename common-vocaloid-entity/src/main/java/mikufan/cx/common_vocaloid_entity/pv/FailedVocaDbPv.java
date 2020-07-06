@@ -3,6 +3,8 @@ package mikufan.cx.common_vocaloid_entity.pv;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.Comparator;
+
 /**
  * indicating something went wrong when performing task on a pv
  * @author CX无敌
@@ -24,10 +26,6 @@ public class FailedVocaDbPv implements Comparable<FailedVocaDbPv> {
 
   @Override
   public int compareTo(FailedVocaDbPv o) {
-    if (o == null){
-      //failed pv with empty pv go first
-      return 1;
-    }
-    return this.pv.compareTo(o.getPv());
+    return Comparator.nullsFirst(Comparator.comparing(FailedVocaDbPv::getPv)).compare(this, o);
   }
 }
