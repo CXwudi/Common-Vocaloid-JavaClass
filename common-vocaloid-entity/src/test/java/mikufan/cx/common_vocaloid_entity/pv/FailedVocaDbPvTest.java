@@ -22,9 +22,21 @@ class FailedVocaDbPvTest {
   void testCompareNotThrow(){
     VocaDbPv vocaDbPv = new VocaDbPv("sm123456", PvServiceStr.NICONICO, "A random しゃべる帽子 PV", 123456);
     FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), "deleted vocaDbPv");
-    FailedVocaDbPv pv2 = null;
-    assertDoesNotThrow(() -> pv1.compareTo(pv2));
-    assertTrue(pv1.compareTo(pv2) > 0);
+    assertDoesNotThrow(() -> pv1.compareTo(null));
+    assertTrue(pv1.compareTo(null) > 0);
   }
 
+
+  /**
+   * should not throw when sorting failed pv without pv
+   */
+  @Test
+  void testCompareNotThrowOnNullPvs(){
+    VocaDbPv vocaDbPv = new VocaDbPv("sm123456", PvServiceStr.NICONICO, "A random しゃべる帽子 PV", 123456);
+    FailedVocaDbPv pv1 = new FailedVocaDbPv(vocaDbPv, vocaDbPv.getTitle(), "deleted vocaDbPv");
+    FailedVocaDbPv pv2 = new FailedVocaDbPv(null, "Song title", "no PV");
+    assertDoesNotThrow(() -> pv1.compareTo(pv2));
+    assertDoesNotThrow(() -> pv2.compareTo(pv1));
+    assertTrue(pv1.compareTo(pv2) > 0);
+  }
 }

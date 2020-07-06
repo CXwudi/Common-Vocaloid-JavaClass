@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.Comparator;
+import java.util.function.Function;
 
 /**
  * indicating something went wrong when performing task on a pv
@@ -26,6 +27,11 @@ public class FailedVocaDbPv implements Comparable<FailedVocaDbPv> {
 
   @Override
   public int compareTo(FailedVocaDbPv o) {
-    return Comparator.nullsFirst(Comparator.comparing(FailedVocaDbPv::getPv)).compare(this, o);
+    return Comparator.nullsFirst(
+        // null first on failed pv instances
+        (FailedVocaDbPv f1, FailedVocaDbPv f2) ->
+            // null first on vocadb pv instances
+            Comparator.<VocaDbPv>nullsFirst(Comparator.naturalOrder()).compare(f1.getPv(), f2.getPv())
+    ).compare(this, o);
   }
 }
