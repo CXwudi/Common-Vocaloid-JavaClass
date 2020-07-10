@@ -1,3 +1,7 @@
 # telling jitpack to use java 11
 jdk:
   - openjdk11
+install:
+  - echo "Running install command on custom directory"
+  - cd all-in-one
+  - ./mvn clean install -Dmaven.test.skip=true
