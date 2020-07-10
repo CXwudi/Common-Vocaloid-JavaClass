@@ -1,7 +1,7 @@
 name: Remove old Package Versions
 # from https://github.com/navikt/remove-package-versions
 on:
-  repository_dispatch: # just want to disable this actiono
+  repository_dispatch: # just want to disable this action
 #   push:
 #     branches: master
 # #   schedule:

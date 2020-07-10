@@ -13,7 +13,8 @@
   <artifactId>common-vocaloid-import-all</artifactId>
 
   <description>
-    the package that released on github, to use common-vocaloid, import this one
+    the package that pack all modules into one.
+    this package is used to be imported as maven dependency
   </description>
 
   <dependencies>

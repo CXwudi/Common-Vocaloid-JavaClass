@@ -4,8 +4,11 @@
 name: Auto-deploy on Github
 
 on:
-  push:
-    branches: [ master ]
+  repository_dispatch: # disabling this action as jitpack provide better deployment
+
+# on:
+#   push:
+#     branches: [ master ]
 
 jobs:
   deploy:
