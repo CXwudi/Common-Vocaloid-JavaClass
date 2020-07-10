@@ -4,4 +4,4 @@ jdk:
 install:
   - echo "Running install command on custom directory"
   - cd all-in-one
-  - ./mvn clean install -Dmaven.test.skip=true
+  - mvn clean install -Dmaven.test.skip=true
