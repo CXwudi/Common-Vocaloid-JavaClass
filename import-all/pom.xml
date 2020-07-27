@@ -22,10 +22,6 @@
       <groupId>mikufan.cx</groupId>
       <artifactId>common-vocaloid-entity</artifactId>
     </dependency>
-    <dependency>
-      <groupId>mikufan.cx</groupId>
-      <artifactId>common-vocaloid-util</artifactId>
-    </dependency>
   </dependencies>
 
 </project>

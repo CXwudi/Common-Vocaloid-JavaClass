@@ -28,10 +28,33 @@
       <artifactId>eclipse-collections</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>mikufan.cx</groupId>
-      <artifactId>common-vocaloid-util</artifactId>
+    <dependency> <!-- slf4j -->
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
       <scope>test</scope>
+    </dependency>
+
+    <dependency> <!-- jackson -->
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency> <!-- and its standalone object mapper -->
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency> <!-- and supports for eclipse collection -->
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-eclipse-collections</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.collections</groupId>
+          <artifactId>eclipse-collections</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency> <!-- and support for yaml -->
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
     </dependency>
 
   </dependencies>

@@ -1,11 +1,9 @@
-package common_vocaloid_util.io;
+package mikufan.cx.common_vocaloid_util.io;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import mikufan.cx.common_vocaloid_util.io.JacksonPojoTransformer;
 import mikufan.cx.common_vocaloid_util.jackson.YamlMapperUtil;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -48,7 +46,7 @@ class JacksonPojoTranslatorTest {
   void testWrite(){
     var tempFile = dir.resolve("temp.json");
     tempFile.toFile().deleteOnExit();
-    Assertions.assertTrue(dummyTranslator.write(dummyObj, tempFile));
+    assertTrue(dummyTranslator.write(dummyObj, tempFile));
   }
 
   /**
@@ -61,7 +59,7 @@ class JacksonPojoTranslatorTest {
       fail();
     }
     tempFile.toFile().deleteOnExit();
-    Assertions.assertTrue(dummyTranslator.write(dummyObj, tempFile));
+    assertTrue(dummyTranslator.write(dummyObj, tempFile));
   }
 
   @Test @SneakyThrows

@@ -1,4 +1,4 @@
-package common_vocaloid_util.io;
+package mikufan.cx.common_vocaloid_util.io;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
