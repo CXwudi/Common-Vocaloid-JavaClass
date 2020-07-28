@@ -24,7 +24,7 @@
   }],
   "fail" :
   [ {
-    "pv": {
+    "failedObj": {
       "title" : "【初音ミク】  霖と五線譜  【オリジナル】",
       "pvId" : "sm35791513",
       "service" : "NicoNicoDouga",
@@ -33,7 +33,7 @@
     "songName": "霖と五線譜",
     "reason": "blah"
   }, {
-    "pv": {
+    "failedObj": {
       "title" : "【初音ミク】四有【MARETU】",
       "pvId" : "75100423",
       "service" : "Bilibili"
