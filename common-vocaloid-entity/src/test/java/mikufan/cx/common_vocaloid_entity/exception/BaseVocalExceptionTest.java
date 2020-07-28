@@ -3,6 +3,7 @@ package mikufan.cx.common_vocaloid_entity.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
@@ -23,10 +24,14 @@ class BaseVocalExceptionTest {
 
   @Test
   void testToString(){
-    var exp = new DummyException(RCIExample.MIKU393901, "A dummy vocaloid exception thrown", new Exception("I love Miku"));
+    var expMsg = "A dummy vocaloid exception thrown";
+    var exp = new DummyException(RCIExample.MIKU393901, expMsg, new Exception("I love Miku"));
     log.error("DummyException in testToString()", exp);
-    assertThrows(BaseVocalException.class, () -> {
+    try {
       throw exp;
-    });
+    } catch (BaseVocalException e){
+      assertEquals(RCIExample.MIKU393901, e.getRci());
+      assertEquals(expMsg, e.getOriginalMessage());
+    }
   }
 }

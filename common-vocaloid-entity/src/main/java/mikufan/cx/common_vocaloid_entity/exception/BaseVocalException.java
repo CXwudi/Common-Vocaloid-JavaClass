@@ -1,5 +1,6 @@
 package mikufan.cx.common_vocaloid_entity.exception;
 
+import lombok.Getter;
 import org.eclipse.collections.api.factory.Lists;
 import org.eclipse.collections.api.list.ImmutableList;
 
@@ -9,14 +10,22 @@ import java.util.SplittableRandom;
  * The super class of exception 
  * @author CX无敌
  */
+@Getter
 public abstract class BaseVocalException extends Exception{
+
+  protected final VocalExceptionRCI rci;
+  protected final String originalMessage;
 
   public BaseVocalException(VocalExceptionRCI rci, String message) {
     super(MessagePostFixMaker.constructMessage(rci, message));
+    this.rci = rci;
+    this.originalMessage = message;
   }
 
   public BaseVocalException(VocalExceptionRCI rci, String message, Throwable cause) {
     super(MessagePostFixMaker.constructMessage(rci, message), cause);
+    this.rci = rci;
+    this.originalMessage = message;
   }
 
 

@@ -59,7 +59,7 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
   public boolean markDone(@NonNull VocaDbPv vocaDbPv){
     todo.remove(vocaDbPv);
     fails.removeIf(failedVocaDbPv -> {
-      var pv = failedVocaDbPv.getPv();
+      var pv = failedVocaDbPv.getFailedObj();
       return pv != null && pv.equals(vocaDbPv);
     });
     return done.add(vocaDbPv);
@@ -72,7 +72,7 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
   public boolean markTodo(@NonNull VocaDbPv vocaDbPv){
     done.remove(vocaDbPv);
     fails.removeIf(failedVocaDbPv -> {
-      var pv = failedVocaDbPv.getPv();
+      var pv = failedVocaDbPv.getFailedObj();
       return pv != null && pv.equals(vocaDbPv);
     });
     return todo.add(vocaDbPv);
