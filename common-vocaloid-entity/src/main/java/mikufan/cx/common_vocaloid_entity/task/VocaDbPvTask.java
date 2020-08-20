@@ -3,21 +3,20 @@ package mikufan.cx.common_vocaloid_entity.task;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import mikufan.cx.common_vocaloid_entity.pv.FailedVocaDbPv;
-import mikufan.cx.common_vocaloid_entity.pv.VocaDbPv;
+import mikufan.cx.common_vocaloid_entity.pv.deprecated.FailedVocaDbPv;
+import mikufan.cx.common_vocaloid_entity.pv.deprecated.VocaDbPv;
 import org.eclipse.collections.api.factory.SortedSets;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
-
-import java.util.Comparator;
-import java.util.Objects;
 
 /**
  * a task for manipulating around PVs with VocaDB IDs.
  * @author CX无敌
+ * @deprecated use the abstract class instead
  */
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
+@Deprecated
 public class VocaDbPvTask implements Task<VocaDbPv> {
   //we use <P extends AbstractPv> to allow either storing generic AbstractPv or just one subtype of AbstractPv
 

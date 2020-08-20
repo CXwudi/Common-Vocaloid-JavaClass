@@ -1,4 +1,4 @@
-package mikufan.cx.common_vocaloid_entity.pv;
+package mikufan.cx.common_vocaloid_entity.pv.deprecated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

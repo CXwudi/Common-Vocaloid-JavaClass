@@ -1,4 +1,4 @@
-package mikufan.cx.common_vocaloid_entity.pv;
+package mikufan.cx.common_vocaloid_entity.pv.deprecated;
 
 import lombok.*;
 

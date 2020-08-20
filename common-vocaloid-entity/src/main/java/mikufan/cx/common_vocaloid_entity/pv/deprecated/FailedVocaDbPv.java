@@ -1,11 +1,10 @@
-package mikufan.cx.common_vocaloid_entity.pv;
+package mikufan.cx.common_vocaloid_entity.pv.deprecated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import mikufan.cx.common_vocaloid_entity.label.FailedObject;
 
 import java.util.Comparator;
-import java.util.function.Function;
 
 /**
  * indicating something went wrong when performing task on a pv
