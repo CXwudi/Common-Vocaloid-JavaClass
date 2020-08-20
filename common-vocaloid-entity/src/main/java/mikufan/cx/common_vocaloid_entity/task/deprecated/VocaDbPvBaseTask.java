@@ -1,4 +1,4 @@
-package mikufan.cx.common_vocaloid_entity.task;
+package mikufan.cx.common_vocaloid_entity.task.deprecated;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +17,7 @@ import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
 @Deprecated
-public class VocaDbPvTask implements Task<VocaDbPv> {
+public class VocaDbPvBaseTask {
   //we use <P extends AbstractPv> to allow either storing generic AbstractPv or just one subtype of AbstractPv
 
   @Getter @NonNull
@@ -34,13 +34,11 @@ public class VocaDbPvTask implements Task<VocaDbPv> {
   protected MutableSortedSet<FailedVocaDbPv> fails = SortedSets.mutable.empty();
 
 
-  @Override
   @JsonIgnore
   public MutableSortedSet<VocaDbPv> getTodo() {
     return todo;
   }
 
-  @Override
   @JsonIgnore
   public MutableSortedSet<VocaDbPv> getDone() {
     return done;

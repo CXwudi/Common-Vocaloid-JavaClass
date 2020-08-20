@@ -1,5 +1,7 @@
 package mikufan.cx.common_vocaloid_entity.task;
 
+import lombok.*;
+
 import java.util.Set;
 
 /**
@@ -8,18 +10,20 @@ import java.util.Set;
  * @param <T> the object that the task is about
  * @author CX无敌
  */
-public interface Task<T> {
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter @ToString
+public abstract class BaseTask<T> {
 
   /**
-   * tasks that are not done
-   * @return tasks that are not done
+   * tasks that need to be performed
    */
-  Set<T> getTodo();
+  protected Set<T> todo;
 
   /**
    * tasks that are done
-   * @return tasks that are done
    */
-  Set<T> getDone();
+  protected Set<T> done;
+
 
 }
