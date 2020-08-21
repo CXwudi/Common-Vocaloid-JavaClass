@@ -113,6 +113,12 @@
         <version>${jackson.version}</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-parameter-names</artifactId>
+        <version>${jackson.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -177,6 +183,9 @@
           <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
+            <compilerArgs>
+              <arg>-parameters</arg>
+            </compilerArgs>
           </configuration>
         </plugin>
 
